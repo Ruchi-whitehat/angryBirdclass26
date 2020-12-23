@@ -48,16 +48,16 @@ function setup(){
     }
     var chain = Constraint.create(options);
     World.add(world,chain);*/
-    log6 = new Log(230,180,80,PI/2);
-    chain = new Chain(bird.body, log6.body);
+    //log6 = new Log(230,180,80,PI/2);
+    slingshot = new SlingShot(bird.body, {x:200, y:100});
 }
 
 function draw(){
     background(backgroundImg);
     Engine.update(engine);
-    console.log(box2.body.position.x);
+    /*console.log(box2.body.position.x);
     console.log(box2.body.position.y);
-    console.log(box2.body.angle);
+    console.log(box2.body.angle);*/
     box1.display();
     box2.display();
     ground.display();
@@ -79,6 +79,12 @@ function draw(){
     /*constrainedLog.display();
     strokeWeight(3);
     line(bird.body.position.x, bird.body.position.y, constrainedLog.body.position.x, constrainedLog.body.position.y);*/
-    log6.display();
-    chain.display();
+    //log6.display();
+    slingshot.display();
+}
+function mouseDragged(){
+    Matter.Body.setPosition(bird.body, {x: mouseX, y: mouseY});
+}
+function mouseReleased(){
+    slingshot.fly();
 }
